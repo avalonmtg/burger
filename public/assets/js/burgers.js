@@ -1,12 +1,11 @@
 $(function() {
-    $(".change-devoured").on("click", function(event) {
-      var id = $(this).data("id");
-   
-       
+    $(".devourForm").on("submit", function(event) {
+      event.preventDefault();
+      var id = $(this).children("#burgersId").val();
     
+       
       $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        
+        type: "PUT"
       }).then(
         function() {
           console.log(id);
@@ -16,25 +15,25 @@ $(function() {
       );
     });
   
-    $(".create-form").on("submit", function(event) {
+     $(".create-form").on("submit", function(event) {
       
-      event.preventDefault();
+       event.preventDefault();
   
-      var newBurger = {
-        name: $("#burgerName").val().trim(),
-    
-      };
+       var newBurger = {
+         name: $("#burgerName").val().trim(),
+         devoured: false    
+       };
   
-      $.ajax("/api/burgers", {
-        type: "POST",
-        data: newBurger
-      }).then(
-        function() {
-          console.log("created new burger");
+       $.ajax("/api/burgers", {
+         type: "POST",
+         data: newBurger
+       }).then(
+         function() {
+           console.log("created new burger!");
           
           location.reload();
         }
-      );
-    });
+       );
+    
   });
-  
+});
