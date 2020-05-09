@@ -13,8 +13,8 @@ var burger = {
     });
   },
   update: function(id, cb) {
-    var burgerId = id
-    orm.update("burgers", {devoured: true}, burgerId, cb)
+    var burgerId = "id = "+id
+   orm.update("burgers", {devoured: true}, burgerId, cb)
 }
 }
 module.exports = burger;

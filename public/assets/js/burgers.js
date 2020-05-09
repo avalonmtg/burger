@@ -2,13 +2,14 @@ $(function() {
     $(".devourForm").on("submit", function(event) {
       event.preventDefault();
       var id = $(this).children("#burgersId").val();
-    
+    console.log(id);
        
-      $.ajax("/api/burgers/" + id, {
-        type: "PUT"
+      $.ajax({
+        method: "PUT",
+        url: "/api/burgers/" + id,
       }).then(
-        function() {
-          console.log(id);
+        function(data) {
+          console.log(id, data);
           
           location.reload();
         }
